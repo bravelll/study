@@ -40,14 +40,16 @@ func TestGetCriPodID(t *testing.T) {
 	client, err := GetCriClient("unix:///run/containerd/containerd.sock")
 	assert.Nil(t, err)
 	klog.Infoln(client)
-	pod, err := GetCriPod("2165591e88119126246475446cf4fabc53f33489b002431a1b9fe29b03d991cd")
+	pod, err := GetCriPod("beb1866db3c12c9d9c7494d08ec046cf7ca70bd5dd5869438092c6b0a232e83a")
 	assert.Nil(t, err)
-	klog.Infof("%#v", pod.GetStatus())
+	klog.Infof("%#v", pod.GetStatus().Network.GetIp())
+	klog.Infof("%#v", pod.GetStatus().State.String())
 	// klog.Infof("%#v", pod.Info["info"])
-	info, err := GetSandboxInfo("2165591e88119126246475446cf4fabc53f33489b002431a1b9fe29b03d991cd")
-	assert.Nil(t, err)
-	klog.Infof("%#v", info)
-	klog.Infof("%v", info)
+	//info, err := GetSandboxInfo("beb1866db3c12c9d9c7494d08ec046cf7ca70bd5dd5869438092c6b0a232e83a")
+	//assert.Nil(t, err)
+	//klog.Infof("%#v", info)
+	//klog.Infof("%v", info)
+	//klog.Infof("%#v", info.CNIResult)
 }
 
 func TestRunPodSandBox(t *testing.T) {
